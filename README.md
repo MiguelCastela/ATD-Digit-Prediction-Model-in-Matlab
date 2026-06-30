@@ -55,3 +55,8 @@ These signal-processing utilities are reused across milestones:
 
 The full project report is available in
 [`Relatorio_ATD_final.pdf`](Relatorio_ATD_final.pdf).
+
+## Authors
+
+- Miguel Castela
+- Miguel Martins
