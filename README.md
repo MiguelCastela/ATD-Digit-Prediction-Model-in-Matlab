@@ -27,6 +27,53 @@ each of the digits 0–9, sampled at 48 kHz. Files follow the naming pattern
 Each milestone folder contains a MATLAB Live Script (`.mlx`), a rendered
 `.pdf` report, and the helper functions it relies on.
 
+## Figures
+
+All taken from [`Relatorio_ATD_final.pdf`](Relatorio_ATD_final.pdf).
+
+### Time domain
+
+| Raw recordings | After preprocessing |
+| -------------- | ------------------- |
+| ![Raw waveforms for digits 0 to 9](docs/images/waveforms-raw.png) | ![Preprocessed waveforms for digits 0 to 9](docs/images/waveforms-preprocessed.jpg) |
+
+One recording per digit, before and after silence removal, normalization and
+padding. Preprocessing is what makes the utterances comparable: the raw clips
+differ in leading silence, amplitude and length.
+
+### Frequency domain
+
+![FFT amplitude spectra per digit](docs/images/fft-spectra.png)
+
+Amplitude spectra per digit, with the three window functions overlaid. The spectral
+features (spread, skewness, edge frequency) are computed from these.
+
+### Time-frequency
+
+![Spectrograms per digit](docs/images/spectrograms.jpg)
+
+Short-time Fourier transforms of the same utterances. Where the FFT collapses the
+whole clip into one spectrum, the spectrogram keeps the time axis, which is what
+makes plosive digits distinguishable from sustained ones.
+
+![Mean power per frequency band for each digit](docs/images/mean-power-per-band.jpg)
+
+Mean power per frequency band, per digit, projected in 3D.
+
+### Feature selection
+
+| Feature distributions | Feature space |
+| --------------------- | ------------- |
+| ![Boxplots of spectral features per digit](docs/images/feature-boxplots.png) | ![3D scatter of three selected features](docs/images/feature-scatter-3d.png) |
+
+The boxplots are how the discriminative features were picked: a feature is useful
+when its per-digit distributions barely overlap. On the right, the digits plotted
+against three of the selected features. Digits whose clouds sit apart are the ones
+the classifier gets right; the overlapping cluster is where the errors concentrate.
+
+The final model reaches **72.2%** accuracy over all 500 recordings, ranging from
+98% on digit 8 down to 40% on digit 5.
+
 ## Shared helper functions
 
 These signal-processing utilities are reused across milestones:
